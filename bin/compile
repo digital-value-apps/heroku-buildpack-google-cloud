@@ -12,11 +12,11 @@ BUILDPACK_DIR=`cd $(dirname $0); cd ..; pwd`
 VENDOR_DIR=$BUILD_DIR/vendor
 mkdir -p $VENDOR_DIR
 
-# Download and install Google Cloud SDK
-wget https://dl.google.com/dl/cloudsdk/release/google-cloud-sdk.zip -qO /tmp/google-cloud-sdk.zip
-unzip -qd $VENDOR_DIR /tmp/google-cloud-sdk.zip
+# Download and install Google Cloud SDK (version 537.0.0)
+wget https://dl.google.com/dl/cloudsdk/channels/rapid/downloads/google-cloud-sdk-537.0.0-linux-x86_64.tar.gz -qO /tmp/google-cloud-sdk.tar.gz
+tar -xzf /tmp/google-cloud-sdk.tar.gz -C $VENDOR_DIR
 $VENDOR_DIR/google-cloud-sdk/install.sh --usage-reporting=false --path-update=false --bash-completion=false
-rm -rf /tmp/google-cloud-sdk.zip
+rm -rf /tmp/google-cloud-sdk.tar.gz
 rm -rf $VENDOR_DIR/google-cloud-sdk/.install/
 
 # Copy .profile.d script for configuring gcloud
